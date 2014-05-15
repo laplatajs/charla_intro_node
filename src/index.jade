@@ -1,0 +1,221 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Introducción a Node.js
+
+    // build:css styles/styles.css
+    //- Check out 'src/bower_components/prism/themes/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-okaidia.css')
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+    // endbuild
+
+  body
+
+    article
+
+      section(data-bespoke-hash="zero", data-bespoke-state="white-background").intro--background-full.meetups-logo
+
+      section(data-bespoke-hash="initial")
+        h1 Introducción a
+        img(src="images/Node.js_logo.svg", class="intro--brand-logo", alt="node.js logo")
+        br
+        br
+        div.intro--details
+          h4 Por Diego Paez
+          i para
+          h4 JS meetups La Plata
+
+      section(data-bespoke-hash="what")
+        h2.bullet ¿Qué es?
+        hr
+        ul
+          li Una Plataforma.
+          li Construida sobre un motor que interpreta JS, llamado V8.
+          li Permite el desarrollo de apps <em>"server-side"</em> usando JS.
+
+      section(data-bespoke-hash="install")
+        h2.bullet Instalación
+        hr
+        h4 2 opciones:
+        hr
+        ul
+          li Manual ➵ <a href="http://nodejs.org/">Install</a>
+          li Usando algún manejador de versiones para node.
+          li ➵ <a href="https://github.com/creationix/nvm">nvm</a>
+          li ➵ <a href="https://github.com/visionmedia/n">n</a>
+
+      section(data-bespoke-hash="npm-initial", data-bespoke-state="white-background").npm-logo
+
+      section(data-bespoke-hash="npm")
+        h2.bullet npm
+        h3 Es el manejador de paquetes oficial de node.
+        hr
+        ul
+          li Lo conseguimos cuando instalamos node.
+          li Podemos pensarlo como una herramienta muy similar a <em>apt</em>.
+          li <pre class="language-bash"><code>$ npm install npm -g # actualiza npm</code></pre>
+
+      section(data-bespoke-hash="npm-chart")
+        h2.bullet npm - En comparación
+        hr
+        div
+          img(src="images/npm_stats.png", alt="promedio diario de paquetes por manejador de paquetes")
+
+      section(data-bespoke-hash="npm-api")
+        h2.bullet npm
+        hr
+        h3 API
+        ul
+          li <pre class="language-bash"><code>$ npm install [paquete] </code></pre>
+          li <pre class="language-bash"><code>$ npm search paquete </code></pre>
+          li <pre class="language-bash"><code>$ npm remove paquete </code></pre>
+          li Varias opciones mas...
+
+      //- section(data-bespoke-hash="npm-3")
+      //-   h2.bullet npm - Ejemplos
+      //-   hr
+      //-   ul
+      //-     li
+      //-       pre.language-bash
+      //-         code.
+      //-           # salva a socket.io como una dependencia dentro del package.json
+      //-           $ npm install socket.io --save
+      //-     li
+      //-       pre.language-bash
+      //-         code.
+      //-           # añade a mocha como una dependencia de desarrollo en package.json
+      //-           $ npm install mocha --save-dev
+      //-     li
+      //-       pre.language-bash
+      //-         code.
+      //-           # lista los modulos instalados localmente
+      //-           $ npm ls
+
+      section(data-bespoke-hash="package")
+        h2.bullet package.json
+        h3 Es un archivo <em>especial</em> que describe información relacionada a nuestro paquete|app|modulo.
+        ul
+          li <pre class="language-bash"><code>$ npm init # Genera un nuevo package.json</code></pre>
+          li Podemos indicar versión (semantica),
+          li si es publico|privado,
+          li dependencias,
+          li script de arranque y testeo,
+          li etc.
+          li ➵ <a href="http://package.json.nodejitsu.com/">Nodejitsu package.json</a>
+
+      section(data-bespoke-hash="modules")
+        h2.bullet Módulos
+        pre
+          code.language-javascript.
+            var PI = Math.PI;
+
+            exports.area = function (r) {
+              return PI * r * r;
+            };
+
+            exports.circumference = function (r) {
+              return 2 * PI * r;
+            };
+
+            // Luego... En otro modulo:
+            var circle = require('./circle.js');
+            console.log( circle.area( 2 ) ); // PI * 2 * 2
+
+      section(data-bespoke-hash="modules-1")
+        h2.bullet Módulos
+        hr
+        ul
+          li Modulo 1⬌1 Archivo E.g.:
+          li <pre class="language-javascript"><code>var lib = require('./');</code></pre> Busca por defecto a index.js si no hay package.json.
+
+      section(data-bespoke-hash="modules-2")
+        h2.bullet Módulos - Características
+        hr
+        ul
+          li Todo es privado.
+          li Elegimos que <em>compartir</em> usando exports, i.e:
+          li <pre class="language-javascript"><code>exports = myFunction;</code></pre>
+          li <pre class="language-javascript"><code>module.exports = myConstructor;</code></pre>
+          li ➵ <a href="http://nodejs.org/api/modules.html#modules_core_modules">Core Modules</a>
+
+      section(data-bespoke-hash='eventloop-initial', data-bespoke-state="lightblue-background").call-logo
+        h1 Don't call us,
+        h1 we'll call you.
+
+      section(data-bespoke-hash='eventloop')
+        h2.bullet The Event Loop
+        hr
+        ul
+          li "Plataforma orientada a eventos".
+          li 1 único thread. <em>(podemos tener workers)</em>
+          li Callbacks son moneda corriente.
+          li stack (pila) de eventos.
+
+      section(data-bespoke-hash='eventloop-stack', data-bespoke-state="white-background").stack-logo
+        p.reference
+          a(href="https://developer.yahoo.com/blogs/ydn/part-1-understanding-event-loops-writing-great-code-11401.html") Understanding event loops and writing great code for Node.js
+
+
+      section(data-bespoke-hash='eventloop-1')
+        h2.bullet The Event Loop - Idea
+        hr
+        ul
+          li setup de nuestro modulo.
+          li Luego a escuchar por eventos
+          li "onEvent" hacer algo -> ejecutar callback.
+
+
+      section(data-bespoke-hash='eventloop-2')
+        h2.bullet The Event Loop - Problemas
+        hr
+        ul
+          li Podemos generar una piramide de callbacks. 😣
+          li Dificil debuggear si usamos funciones anónimas. 😣
+          li Hay soluciones. 😄
+
+      section(data-bespoke-hash='eventloop-3')
+        h2.bullet The Event Loop - Soluciones
+        hr
+        ul
+          li Para evitar la piramide podemos:
+          li usar promesas (todo un tema) y/o 😉
+          li evitar funciones anónimas. 😄
+          li Ahora podremos saber que función falla cuando hacemos debugging. 😄
+
+      section(data-bespoke-hash='questions')
+        h2 ¿Preguntas?
+
+      section(data-bespoke-hash="final", data-bespoke-state="final").mib-logo.intro--background-full
+        h2 Bye Bye
+
+      section(data-bespoke-hash="clap-1", data-bespoke-state="").joker-clap.intro--background-full
+
+      section(data-bespoke-hash="clap-2", data-bespoke-state="").it-clap.intro--background-full
+
+      section(data-bespoke-hash="clap-3", data-bespoke-state="").crowd-clap.intro--background-full
+
+      section(data-bespoke-hash='thanks')
+        h2 ¡Gracias por venir!
+
+    // build:js scripts/scripts.js
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-keys/dist/bespoke-keys.min.js')
+    script(src='bower_components/bespoke-touch/dist/bespoke-touch.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-scale/dist/bespoke-scale.min.js')
+    script(src='bower_components/bespoke-progress/dist/bespoke-progress.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='scripts/main.js')
+    // endbuild
+    // extra
+    script(src='bower_components/leaptrainer/leaptrainer.js')
+    script(src='bower_components/leaptrainer/sub-classes/cross-correlation.js')
+    script(src='bower_components/leapjs/leap-0.6.0.js')
+    script(src='scripts/gestures.json')
+    script(src='scripts/leapPose.js')
+
+
