@@ -9,6 +9,7 @@
     "bespoke-scale": "~0.2.0",
     "bespoke-progress": "~0.1.0",
     "bespoke-state": "~0.2.0",
+    "bespoke-hash": "~0.1.2",
     "prism": "gh-pages",
     "leaptrainer": "https://github.com/roboleary/LeapTrainer.js.git",
     "leapjs": "~0.6.0"
